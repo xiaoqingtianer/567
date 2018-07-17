@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .content{
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 50px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;  
+            margin-top: -100px;
+            margin-left:-150px;
+            background: #ddd;
+        }
+        
+    </style>
+</head>
+<body>
+    <button id="btn">弹出来点东西</button>
+    
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        // $(function(){
+        //     var $btn = $("#btn");
+        //     var content = "hello world";
+        //     $btn.on("click",function(){
+        //         var $pop = $("<div class='wrap'><div class='content'>"+content+"</div></div>");
+        //         $("body").append($pop);
+
+        //         $("body").on("click",".wrap",function(){
+        //             $(this).hide();
+        //         })
+        //     })
+        // })
+
+        // 什么叫做设计模式;
+        // 武功秘籍;
+        
+        // function Foo(){
+
+        // }
+        // console.log(new Foo() == new Foo());
+        // 单例模式的核心就是把这套算式变成 true;
+
+        // var flag = false; // 是否创建了实例;
+        // var instance = null; // 实例;
+        // function Singleton(){
+        //     if(flag){
+        //         return instance; 
+        //     }else{
+        //         instance = this;
+        //         flag = true;
+        //     }
+        // }
+        // console.log(new Singleton() == new Singleton());
+            
+        // function Singleton(){
+        //     // Singleton.instance
+        //     if(Singleton.instance == undefined){
+        //         Singleton.instance = this;
+        //     }else{
+        //         return Singleton.instance;
+        //     }
+        // }
+        // console.log(new Singleton() == new Singleton());
+
+        function Pop(content){
+            if(Pop.elem == undefined){
+                Pop.elem = $("<div class='wrap'><div class='content'>"+content+"</div></div>");
+                $("body").append(Pop.elem);
+                $("body").on("click",".wrap",function(){
+                    $(this).hide();
+                })
+            }else{
+                return Pop.elem.toggle();
+            }
+        }
+
+        $("#btn").on("click",function(){
+            new Pop("hello world");
+        })
+
+
+    </script>   
+</body>
+</html>

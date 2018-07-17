@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>观察者模式</title>
+</head>
+<body>
+    <script>
+        // 订阅 
+        
+        // 发布模式;
+        var observer = {
+            publish:function(msg){ // 发布者;
+                for(var i = 0 ; i < this.subscribeList.length ; i++){
+                    this.subscribeList[i].pub(msg);
+                }
+                return ""
+            },
+            subscribeList:[], //订阅者名单;
+            subscribe:function(elem){ // 订阅器;
+                this.subscribeList.push(elem)
+            },
+            disSubscribe:function(index){
+                this.subscribeList.splice(index,1);
+            }
+        }
+
+        function Fans(name){
+            this.name = name;
+        }
+        Fans.prototype.pub = function(msg){
+            console.log(this.name + "收到了爱豆的新消息" + msg)
+        }
+
+        observer.subscribe(new Fans("李二狗"))
+        observer.subscribe(new Fans("张全蛋"))
+        observer.subscribe(new Fans("李诞"))
+        observer.subscribe(new Fans("王建国"))
+
+    </script>
+</body>
+</html>

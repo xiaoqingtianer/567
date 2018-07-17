@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例模式</title>
+    <style>
+        html,body{
+            height: 100%;
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrap{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            position: fixed;
+            left: 0;
+            top: 0;
+        }
+        .content{
+            width: 300px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            font-size: 50px;
+            color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;  
+            margin-top: -100px;
+            margin-left:-150px;
+            background: #ddd;
+        }
+        
+    </style>
+</head>
+<body>
+    <button id="btn">弹出来点东西</button>
+    
+    <script src="modules/require.js"></script>
+    <script>
+        require(["modules/pop","modules/jquery-3.2.1"],function(Pop){
+            $("#btn").on("click",function(){
+                new Pop("hello world");
+            })
+        })
+    </script>   
+</body>
+</html>
