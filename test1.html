@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="https://cdn.bootcss.com/vue/2.5.16/vue.js"></script>
+		<style>
+			.wrap{
+				width: 300px;
+				height: 300px;
+				background: pink;
+			}
+			.red{
+				color:red;
+			}
+			.color{
+				width: 300px;
+				height: 300px;
+				border:1px solid #000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<input type="number" v-model="w"/>
+			<input type="number" v-model="h"/>
+			<div class="wrap" :style="{width:w+'px',height:h+'px'}"></div>
+			<ul>
+				<li v-for="(item,index) in list" @click="curIndex=index">
+					<span :class="{'red':curIndex===index}">{{item}}</span>
+				</li>
+			</ul>
+			<input type="range" min="0" max="255" v-model="r"/>
+			<input type="range" min="0" max="255" v-model="g"/>
+			<input type="range" min="0" max="255" v-model="b"/>
+			<div class="color" :style="{background:color}"></div>
+		</div>
+		
+		<script>
+			new Vue({
+				el:".box",
+				data:{
+					w:300,
+					h:300,
+					list:["aaaaaaa","bbbbbbbb","ccccccc"],
+					curIndex:0,
+					r:0,
+					g:0,
+					b:0
+				},
+				computed:{
+					color(){
+						return `rgb(${this.r},${this.g},${this.b})`;
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
